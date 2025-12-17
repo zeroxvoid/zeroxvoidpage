@@ -1,33 +1,532 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя первая страница</title>
+    
+    <!-- SEO & META -->
+    <title>0xVOID | Enterprise AdTech, AI Video & Data Automation</title>
+    <meta name="description" content="Разработка High-End IT-решений для бизнеса и арбитража. Массовая генерация AI-видео, сквозная аналитика, E2E воронки, BPM автоматизация и Smart IVR. Техническое превосходство.">
+    <meta name="keywords" content="adtech разработка, mass ai video generation, сквозная аналитика, e2e воронки продаж, bpm автоматизация, smart ivr, автозалив рекламы, парсинг данных, devops аутсорс">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="0xVOID Laboratory">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="0xVOID | The Edge of IT Progress">
+    <meta property="og:description" content="Мы автоматизируем хаос. AdTech, Data Mining, AI Video.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            height: 100vh;
-            background-color: #f0f2f5;
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020203; color: #e2e8f0; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Palette */
+        :root {
+            --neon-violet: #8b5cf6;
+            --neon-cyan: #06b6d4;
+            --dark-bg: #020203;
         }
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
+
+        /* Dynamic Background */
+        .void-mesh {
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.06), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.06), transparent 25%);
+            background-attachment: fixed;
         }
+        
+        /* Scanline Effect */
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.3;
+        }
+
+        /* Void Cards */
+        .void-card {
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .void-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Glitch Text */
+        .glitch-text { position: relative; }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8;
+        }
+        .glitch-text::before { color: #0ff; z-index: -1; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-2px, 0); animation: glitch-anim-1 3s infinite linear alternate-reverse; }
+        .glitch-text::after { color: #f0f; z-index: -2; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); transform: translate(2px, 0); animation: glitch-anim-2 2s infinite linear alternate-reverse; }
+        
+        @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(60% 0 10% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(80% 0 5% 0); } }
+
+        /* Cyber Button */
+        .btn-cyber {
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-cyber::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        .btn-cyber:hover::before { left: 100%; }
+
+        /* Digital Core Avatar */
+        .digital-core {
+            position: relative; width: 80px; height: 80px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+            transition: all 0.3s;
+        }
+        .digital-core::after {
+            content: ''; position: absolute; inset: -1px; border-radius: 50%;
+            border: 1px dashed var(--color); opacity: 0.3;
+            animation: rotate 10s linear infinite;
+        }
+        .group:hover .digital-core { box-shadow: 0 0 20px var(--glow); border-color: var(--color); }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
-<body>
+<body class="void-mesh min-h-screen selection:bg-cyan-500 selection:text-white">
 
-    <div class="card">
-        <h1>Привет, мир!</h1>
-        <p>Этот файл index.html был создан через веб-интерфейс GitHub.</p>
-    </div>
+    <div class="scanline"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-[#020203]/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-mono font-bold text-xl tracking-tighter text-white">
+                0x<span class="text-cyan-500">VOID</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-xs font-mono text-gray-400 tracking-widest uppercase">
+                <a href="#solutions" class="hover:text-cyan-400 transition">[ Systems ]</a>
+                <a href="#team" class="hover:text-cyan-400 transition">[ Unit_Squad ]</a>
+                <a href="#faq" class="hover:text-cyan-400 transition">[ Protocol ]</a>
+                <a href="#contact" class="hover:text-white transition text-white border border-white/20 px-3 py-1 rounded hover:bg-white/5">[ Initialize ]</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative pt-32 pb-24 px-6">
+        <div class="max-w-5xl mx-auto text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 bg-cyan-500/5 rounded text-[10px] font-mono text-cyan-300 mb-8 uppercase tracking-widest">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+                Next-Gen IT Infrastructure
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none mb-8 glitch-text" data-text="THE EDGE OF PROGRESS">
+                THE EDGE OF <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">IT PROGRESS</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed font-light">
+                Мы создаем инструменты, которые дают бизнесу и арбитражным командам нечестное преимущество.
+                <span class="text-white">AdTech комбайны, сквозная аналитика данных, BPM автоматизация.</span> 
+                Любые скрипты для упрощения жизни и масштабирования прибыли.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-5">
+                <a href="#contact" class="btn-cyber px-8 py-4 text-white font-bold tracking-wide uppercase text-sm flex items-center justify-center gap-2">
+                    <span>/// Deploy Solution</span>
+                </a>
+                <a href="#solutions" class="px-8 py-4 border border-white/10 text-gray-400 hover:text-white hover:border-cyan-500/50 transition uppercase text-sm font-mono flex items-center justify-center">
+                    [ System Modules ]
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="border-y border-white/5 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center font-mono">
+            <div>
+                <div class="text-2xl font-bold text-white mb-1">FULL CYCLE</div>
+                <div class="text-xs text-gray-500 uppercase tracking-widest">Dev -> Deploy -> Support</div>
+                <p class="text-[10px] text-gray-400 mt-2">Разработка, внедрение и вечная поддержка.</p>
+            </div>
+            <div>
+                <div class="text-2xl font-bold text-white mb-1">ANONYMOUS</div>
+                <div class="text-xs text-gray-500 uppercase tracking-widest">Secure Partnership</div>
+                <p class="text-[10px] text-gray-400 mt-2">Работаем конфиденциально. Ваша бизнес-логика под защитой.</p>
+            </div>
+            <div>
+                <div class="text-2xl font-bold text-white mb-1">CRYPTO</div>
+                <div class="text-xs text-gray-500 uppercase tracking-widest">Global Payments</div>
+                <p class="text-[10px] text-gray-400 mt-2">USDT / BTC. Мгновенные расчеты.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS GRID -->
+    <section id="solutions" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">CORE CAPABILITIES <span class="text-cyan-500">.v3</span></h2>
+                <p class="text-gray-400 font-mono text-sm max-w-xl">
+                    > Executing high-end automation for Traffic, Data & Business Logic.<br>
+                    > Custom engineering beyond standard limitations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- 1. Mass Media / Deepfake Combines -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-cyan-500 group-hover:opacity-20">01</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition">Mass AI Video Pipelines</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Построение комбайнов для промышленной генерации контента. 
+                        Скрипты автоматически создают тысячи уникальных видео (AI Generation/Face-Swap) и 
+                        <strong>автоматически заливают их на видеохостинги</strong> (YouTube, TikTok, Reels). Бесконечный поток органического трафика без рутины.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">Auto-Upload</span>
+                        <span class="border border-white/10 px-2 py-1">Content Farm</span>
+                    </div>
+                </div>
+
+                <!-- 2. BPM & Business Scripts -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-violet-500 group-hover:opacity-20">02</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-violet-400 transition">BPM & Cloud Automation</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Скрипты, упрощающие жизнь бизнесу. Построение BPM-автоматизаций на базе 
+                        <strong>AWS, Google Cloud, Microsoft Azure</strong> или приватных решений. 
+                        Мы связываем CRM, логистику, учет и коммуникации в единый управляемый организм, исключая человеческий фактор.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">Cloud Logic</span>
+                        <span class="border border-white/10 px-2 py-1">Process Opt</span>
+                    </div>
+                </div>
+
+                <!-- 3. AdTech Automation -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-blue-500 group-hover:opacity-20">03</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">AdTech & Traffic Control</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Инструменты для доминирования в рекламных сетях. Эмуляция действий пользователей, автофарминг аккаунтов, 
+                        умная маршрутизация трафика (Smart TDS) и подмена IP/Fingerprints. 
+                        Ваша реклама работает 24/7, обходя любые фильтры и ограничения.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">RPA Bots</span>
+                        <span class="border border-white/10 px-2 py-1">Traffic Routing</span>
+                    </div>
+                </div>
+
+                <!-- 4. Smart IVR & Communication -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-emerald-500 group-hover:opacity-20">04</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition">Smart IVR & Chatbots</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Внедрение умных голосовых меню (IVR) с распознаванием речи и AI-логикой. 
+                        Разработка сложных чат-ботов, которые не просто отвечают на вопросы, а закрывают продажи, осуществляют поддержку и 
+                        бесшовно интегрируются с вашей телефонией и CRM.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">Voice AI</span>
+                        <span class="border border-white/10 px-2 py-1">Auto-Sales</span>
+                    </div>
+                </div>
+
+                <!-- 5. Unified Data Intelligence -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-amber-500 group-hover:opacity-20">05</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition">Unified Data Command Center</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Агрегация хаоса в понятные цифры. Мы сводим данные из рекламных кабинетов (Ads), Бирж, Трекеров (Keitaro/Binom) и CRM в <strong>единый дашборд</strong>.
+                        Визуализация реального ROI, мониторинг спенда и доходности в реальном времени. Полный контроль над потоками данных.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">Cross-Platform</span>
+                        <span class="border border-white/10 px-2 py-1">Real-time ROI</span>
+                    </div>
+                </div>
+
+                <!-- 6. End-to-End Funnels -->
+                <div class="void-card p-8 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-fuchsia-500 group-hover:opacity-20">06</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-fuchsia-400 transition">End-to-End Sales Architecture</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Построение сквозных воронок продаж. Мы технически связываем трафик, лендинги, ретаргетинг и отдел продаж в единый механизм.
+                        Инжектируем коды отслеживания на каждом этапе User Journey. От первого клика до депозита в кассе — ни один лид не потеряется.
+                    </p>
+                    <div class="flex gap-2 text-[10px] font-mono text-gray-500 uppercase">
+                        <span class="border border-white/10 px-2 py-1">Conversion Arch</span>
+                        <span class="border border-white/10 px-2 py-1">Lead Flow</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE LOG STRIP -->
+    <section class="py-12 bg-black border-y border-white/5 font-mono text-xs overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-cyan-500 animate-pulse">●</span>
+                <span class="text-gray-400">DEPLOYED_MODULES // LOG_STREAM</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-500">
+                <div class="border-l border-gray-800 pl-3">
+                    <div class="text-white">YouTube Auto-Uploader</div>
+                    <div>Mass Content Delivery</div>
+                </div>
+                <div class="border-l border-gray-800 pl-3">
+                    <div class="text-white">AWS Lambda Script</div>
+                    <div>Serverless Data Process</div>
+                </div>
+                <div class="border-l border-gray-800 pl-3">
+                    <div class="text-white">Smart IVR System</div>
+                    <div>Call Center Route</div>
+                </div>
+                <div class="border-l border-gray-800 pl-3">
+                    <div class="text-white">Custom Browser RPA</div>
+                    <div>User Action Emulation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 0xUNIT TEAM -->
+    <section id="team" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-2">0xUNIT SQUAD</h2>
+                <p class="text-gray-500 font-mono text-sm uppercase">Элитный инженерный состав. Full-Stack покрытие задач.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-y-16 gap-x-8">
+                
+                <!-- 1. TEAM LEAD -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #ffffff; --glow: rgba(255, 255, 255, 0.3);">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-white font-bold text-xs uppercase tracking-widest">UNIT_LEAD</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">Solution Architect</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Стратегия, проектирование архитектуры, контроль качества.</p>
+                </div>
+
+                <!-- 2. DEVOPS (CLOUD) -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #3b82f6; --glow: rgba(59, 130, 246, 0.2);">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-blue-500 font-bold text-xs uppercase tracking-widest">CLOUD_OPS</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">DevOps / Infra</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">AWS/Google Cloud, Docker, CI/CD, безопасность серверов.</p>
+                </div>
+
+                <!-- 3. BACKEND (CORE) -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #8b5cf6; --glow: rgba(139, 92, 246, 0.2);">
+                        <div class="w-2 h-2 bg-violet-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-violet-500 font-bold text-xs uppercase tracking-widest">CORE_DEV</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">Backend (Go/Py)</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Разработка логики, API, микросервисов и высоконагруженных модулей.</p>
+                </div>
+
+                <!-- 4. FRONTEND (UI) -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #ec4899; --glow: rgba(236, 72, 153, 0.2);">
+                        <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-pink-500 font-bold text-xs uppercase tracking-widest">FRONT_OPS</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">Frontend / UI</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Создание дашбордов, админ-панелей, WebApp интерфейсов.</p>
+                </div>
+
+                <!-- 5. AI ENGINEER -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #f43f5e; --glow: rgba(244, 63, 94, 0.2);">
+                        <div class="w-2 h-2 bg-rose-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-rose-500 font-bold text-xs uppercase tracking-widest">NEURAL_NET</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">AI / Deepfake</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Обучение моделей, генерация видео, NLP и чат-боты.</p>
+                </div>
+
+                <!-- 6. DATA ANALYST -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #10b981; --glow: rgba(16, 185, 129, 0.2);">
+                        <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-emerald-500 font-bold text-xs uppercase tracking-widest">DATA_INTEL</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">Data Analyst</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">BI, SQL, визуализация данных, поиск инсайтов в Big Data.</p>
+                </div>
+
+                <!-- 7. PARSING / DATA ENG -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #06b6d4; --glow: rgba(6, 182, 212, 0.2);">
+                        <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-cyan-500 font-bold text-xs uppercase tracking-widest">DATA_MINER</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">Parsing / ETL</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Сбор данных, обход защит, прокси-сети, структурирование.</p>
+                </div>
+
+                <!-- 8. QA / AUTOMATION -->
+                <div class="text-center group">
+                    <div class="digital-core" style="--color: #f59e0b; --glow: rgba(245, 158, 11, 0.2);">
+                        <div class="w-2 h-2 bg-amber-500 rounded-full"></div>
+                    </div>
+                    <div class="font-mono text-amber-500 font-bold text-xs uppercase tracking-widest">QA_GUARD</div>
+                    <div class="text-[10px] text-gray-500 mt-1 uppercase">QA Automation</div>
+                    <p class="text-[9px] text-gray-600 mt-2 px-4">Автотесты, проверка стабильности, мониторинг багов.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 px-6 border-t border-white/5 bg-black/50">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center font-mono">KNOWLEDGE_BASE</h2>
+            
+            <div class="void-card p-1 rounded-lg">
+                <details class="group p-4 open:bg-white/5 rounded-lg transition">
+                    <summary class="flex justify-between items-center font-bold text-gray-300 cursor-pointer hover:text-white">
+                        <span>Как вы объединяете данные из разных источников?</span>
+                        <span class="text-cyan-500">+</span>
+                    </summary>
+                    <div class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Мы используем API интеграции и кастомные парсеры. Мы "вытягиваем" данные из рекламных кабинетов (расходы), CRM (статусы лидов) и трекеров (клики). Затем сводим это в единую базу данных и визуализируем через BI-системы (или кастомные дашборды). Вы видите полную картину: сколько потратили на рекламу и сколько реально заработали.
+                    </div>
+                </details>
+            </div>
+
+            <div class="void-card p-1 rounded-lg">
+                <details class="group p-4 open:bg-white/5 rounded-lg transition">
+                    <summary class="flex justify-between items-center font-bold text-gray-300 cursor-pointer hover:text-white">
+                        <span>Что такое "Сквозная воронка продаж" в вашем исполнении?</span>
+                        <span class="text-cyan-500">+</span>
+                    </summary>
+                    <div class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Это техническая настройка всего пути клиента. Мы не просто делаем сайт. Мы настраиваем пиксели, постбэки (Postback), пробрасываем UTM-метки через все этапы, подключаем ретаргетинг на тех, кто не купил, и настраиваем триггерные рассылки. Мы закрываем технические "дыры", куда утекает бюджет.
+                    </div>
+                </details>
+            </div>
+
+            <div class="void-card p-1 rounded-lg">
+                <details class="group p-4 open:bg-white/5 rounded-lg transition">
+                    <summary class="flex justify-between items-center font-bold text-gray-300 cursor-pointer hover:text-white">
+                        <span>Как работают комбайны для видео? Это безопасно для аккаунтов?</span>
+                        <span class="text-cyan-500">+</span>
+                    </summary>
+                    <div class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Мы строим системы, которые не просто генерируют контент через AI, но и уникализируют его на уровне метаданных и визуального шума. Автозалив осуществляется через эмуляцию реальных устройств с использованием качественных мобильных прокси, что минимизирует риск банов.
+                    </div>
+                </details>
+            </div>
+
+            <div class="void-card p-1 rounded-lg">
+                <details class="group p-4 open:bg-white/5 rounded-lg transition">
+                    <summary class="flex justify-between items-center font-bold text-gray-300 cursor-pointer hover:text-white">
+                        <span>Можете ли вы внедрить умный IVR в наш колл-центр?</span>
+                        <span class="text-cyan-500">+</span>
+                    </summary>
+                    <div class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Да. Мы разрабатываем IVR системы, которые не просто просят "нажать цифру", а понимают голос клиента, могут ответить на типовые вопросы или маршрутизировать звонок на нужного специалиста в зависимости от данных в CRM. Это снижает нагрузку на операторов до 40%.
+                    </div>
+                </details>
+            </div>
+
+            <div class="void-card p-1 rounded-lg">
+                <details class="group p-4 open:bg-white/5 rounded-lg transition">
+                    <summary class="flex justify-between items-center font-bold text-gray-300 cursor-pointer hover:text-white">
+                        <span>В чем ваше преимущество перед обычной веб-студией?</span>
+                        <span class="text-cyan-500">+</span>
+                    </summary>
+                    <div class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Обычные студии делают сайты. Мы делаем <strong>инструменты</strong>. Мы понимаем специфику арбитража, High-Load нагрузок и работы с данными. Мы знаем, как обходить ограничения платформ и создавать решения, которые приносят деньги здесь и сейчас.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-2xl mx-auto void-card p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
+
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-2">INITIATE PARTNERSHIP</h2>
+                <p class="text-gray-500 font-mono text-xs">// Secure End-to-End Channel</p>
+            </div>
+            
+            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request Encrypted & Sent.');">
+                <div>
+                    <label class="block text-xs font-mono text-cyan-400 mb-2">CONTACT_ID (Telegram)</label>
+                    <input type="text" class="w-full bg-black/50 border border-white/10 p-4 text-white font-mono focus:border-cyan-500 outline-none transition" placeholder="@username">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono text-cyan-400 mb-2">MODULE</label>
+                        <select class="w-full bg-black/50 border border-white/10 p-4 text-gray-300 font-mono focus:border-cyan-500 outline-none transition appearance-none">
+                            <option>AdTech / Traffic</option>
+                            <option>Data / Analytics</option>
+                            <option>Mass AI Video</option>
+                            <option>BPM / Automation</option>
+                            <option>E2E Sales Funnel</option>
+                            <option>Smart IVR / Bots</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-cyan-400 mb-2">BUDGET (USDT)</label>
+                        <select class="w-full bg-black/50 border border-white/10 p-4 text-gray-300 font-mono focus:border-cyan-500 outline-none transition appearance-none">
+                            <option>&lt; $5k</option>
+                            <option>$5k - $20k</option>
+                            <option>&gt; $20k</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-cyan-400 mb-2">PAYLOAD (Task Description)</label>
+                    <textarea rows="4" class="w-full bg-black/50 border border-white/10 p-4 text-white font-mono focus:border-cyan-500 outline-none transition" placeholder="Опишите задачу (Воронка, Аналитика, Видео, Парсинг)..."></textarea>
+                </div>
+
+                <button class="w-full btn-cyber py-4 text-white font-bold tracking-widest uppercase hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition">
+                    TRANSMIT REQUEST
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-white/5 bg-black text-center">
+        <div class="font-mono text-xs text-gray-600">
+            <p class="mb-2">0xVOID LABS &copy; 2025</p>
+            <p>ADVANCED AUTOMATION. SECURE CODE.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
