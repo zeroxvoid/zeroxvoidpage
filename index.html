@@ -85,6 +85,19 @@
         }
         .btn-cyber:hover::before { left: 100%; }
 
+        /* Signal Button Variant */
+        .btn-signal {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-signal::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        .btn-signal:hover::before { left: 100%; }
+
         /* Digital Core Avatar */
         .digital-core {
             position: relative; width: 80px; height: 80px; border-radius: 50%;
@@ -189,7 +202,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <!-- 1. Mass Media / Deepfake Combines -->
+                <!-- 1. Mass Media -->
                 <div class="void-card p-8 group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-cyan-500 group-hover:opacity-20">01</div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition">Mass AI Video Pipelines</h3>
@@ -204,7 +217,7 @@
                     </div>
                 </div>
 
-                <!-- 2. BPM & Business Scripts -->
+                <!-- 2. BPM -->
                 <div class="void-card p-8 group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-violet-500 group-hover:opacity-20">02</div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-violet-400 transition">BPM & Cloud Automation</h3>
@@ -234,7 +247,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Smart IVR & Communication -->
+                <!-- 4. Smart IVR -->
                 <div class="void-card p-8 group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-emerald-500 group-hover:opacity-20">04</div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition">Smart IVR & Chatbots</h3>
@@ -249,7 +262,7 @@
                     </div>
                 </div>
 
-                <!-- 5. Unified Data Intelligence -->
+                <!-- 5. Unified Data -->
                 <div class="void-card p-8 group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-amber-500 group-hover:opacity-20">05</div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition">Unified Data Command Center</h3>
@@ -263,7 +276,7 @@
                     </div>
                 </div>
 
-                <!-- 6. End-to-End Funnels -->
+                <!-- 6. E2E Funnels -->
                 <div class="void-card p-8 group relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-4xl font-bold text-fuchsia-500 group-hover:opacity-20">06</div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-fuchsia-400 transition">End-to-End Sales Architecture</h3>
@@ -470,53 +483,47 @@
         </div>
     </section>
 
-    <!-- FORM -->
+    <!-- CONTACT (EMAIL & SIGNAL CARD) -->
     <section id="contact" class="py-24 px-6">
-        <div class="max-w-2xl mx-auto void-card p-8 md:p-12 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
+        <div class="max-w-3xl mx-auto void-card p-10 text-center relative overflow-hidden">
+            <!-- Visual effects -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-violet-600"></div>
 
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-white mb-2">INITIATE PARTNERSHIP</h2>
-                <p class="text-gray-500 font-mono text-xs">// Secure End-to-End Channel</p>
+            <h2 class="text-3xl font-bold text-white mb-4">INITIATE PARTNERSHIP</h2>
+            <p class="text-gray-400 font-mono text-sm mb-10">
+                // Secure End-to-End Channels.<br>
+                Опишите задачу. Мы предложим архитектуру и бюджет.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+                <!-- Email Block -->
+                <div class="bg-black/50 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 transition group">
+                    <p class="text-xs text-gray-500 font-mono mb-2 uppercase tracking-widest">Email (Proton)</p>
+                    <a href="mailto:zeroxvoid.space@proton.me" class="text-lg md:text-xl font-mono text-cyan-400 group-hover:text-white transition break-all">
+                        zeroxvoid.space@proton.me
+                    </a>
+                </div>
+
+                <!-- Signal Block -->
+                <div class="bg-black/50 border border-white/10 rounded-xl p-6 hover:border-violet-500/50 transition group">
+                    <p class="text-xs text-gray-500 font-mono mb-2 uppercase tracking-widest">Signal Messenger</p>
+                    <a href="https://signal.me/#eu/e1xzCYOScwSqFK5kAbrx4F51oBKHRSTEXxxabs4vqcWAXJrGqFZN4KOgPUSDquyS" target="_blank" class="text-lg md:text-xl font-mono text-violet-400 group-hover:text-white transition break-all flex items-center gap-2">
+                        OxVOID_team.27
+                        <svg class="w-4 h-4 opacity-50 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
             </div>
-            
-            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request Encrypted & Sent.');">
-                <div>
-                    <label class="block text-xs font-mono text-cyan-400 mb-2">CONTACT_ID (Telegram)</label>
-                    <input type="text" class="w-full bg-black/50 border border-white/10 p-4 text-white font-mono focus:border-cyan-500 outline-none transition" placeholder="@username">
-                </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-mono text-cyan-400 mb-2">MODULE</label>
-                        <select class="w-full bg-black/50 border border-white/10 p-4 text-gray-300 font-mono focus:border-cyan-500 outline-none transition appearance-none">
-                            <option>AdTech / Traffic</option>
-                            <option>Data / Analytics</option>
-                            <option>Mass AI Video</option>
-                            <option>BPM / Automation</option>
-                            <option>E2E Sales Funnel</option>
-                            <option>Smart IVR / Bots</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-mono text-cyan-400 mb-2">BUDGET (USDT)</label>
-                        <select class="w-full bg-black/50 border border-white/10 p-4 text-gray-300 font-mono focus:border-cyan-500 outline-none transition appearance-none">
-                            <option>&lt; $5k</option>
-                            <option>$5k - $20k</option>
-                            <option>&gt; $20k</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-mono text-cyan-400 mb-2">PAYLOAD (Task Description)</label>
-                    <textarea rows="4" class="w-full bg-black/50 border border-white/10 p-4 text-white font-mono focus:border-cyan-500 outline-none transition" placeholder="Опишите задачу (Воронка, Аналитика, Видео, Парсинг)..."></textarea>
-                </div>
-
-                <button class="w-full btn-cyber py-4 text-white font-bold tracking-widest uppercase hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition">
-                    TRANSMIT REQUEST
-                </button>
-            </form>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="mailto:zeroxvoid.space@proton.me" class="inline-flex items-center justify-center gap-2 btn-cyber px-8 py-4 text-white font-bold tracking-widest uppercase hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span>OPEN SECURE MAIL</span>
+                </a>
+                <a href="https://signal.me/#eu/e1xzCYOScwSqFK5kAbrx4F51oBKHRSTEXxxabs4vqcWAXJrGqFZN4KOgPUSDquyS" target="_blank" class="inline-flex items-center justify-center gap-2 btn-signal px-8 py-4 text-white font-bold tracking-widest uppercase hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C10.5 18.5 9 18 7.5 17.5C7.5 17.5 9 16.5 10.5 16.5C12 16.5 13.5 17.5 13.5 17.5C12 18 10.5 18.5 12 18.5ZM17 14.5C17 14.5 15.5 15.5 12 15.5C8.5 15.5 7 14.5 7 14.5C7 14.5 6 12 6 9.5C6 6.5 8.5 4 12 4C15.5 4 18 6.5 18 9.5C18 12 17 14.5 17 14.5Z"/></svg>
+                    <span>OPEN SIGNAL APP</span>
+                </a>
+            </div>
         </div>
     </section>
 
